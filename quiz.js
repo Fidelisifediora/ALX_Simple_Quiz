@@ -1,27 +1,30 @@
- // Function to check the user's answer
+// Function to check the user's answer
 function checkAnswer() {
-    // Correct answer is stored as a string
-    const correctAnswer = "4";
-    
-    // Retrieve the selected answer from the radio buttons
-    const userAnswer = document.querySelector('input[name="quiz"]:checked');
+    // Correct answer stored as a string
+    const correctAnswer = "4"; // Make sure this matches the correct answer in the quiz
 
-    // Check if an answer was selected
-    if (userAnswer) {
-        // Compare the value of the selected answer with the correct answer
-        if (userAnswer.value === correctAnswer) {
-            // Feedback for the correct answer
+    // Retrieve the selected answer from the radio buttons
+    const selectedOption = document.querySelector('input[name="quiz"]:checked');
+
+    // Check if the user has selected an answer
+    if (selectedOption !== null) {
+        // Get the value of the selected answer and compare it with the correct answer
+        const userAnswer = selectedOption.value;
+
+        // Compare the selected answer with the correct one
+        if (userAnswer === correctAnswer) {
+            // If correct, display the success feedback
             document.getElementById('feedback').textContent = "Correct! Well done.";
         } else {
-            // Feedback for an incorrect answer
+            // If incorrect, display the error feedback
             document.getElementById('feedback').textContent = "That's incorrect. Try again!";
         }
     } else {
-        // Handle the case where no answer is selected
+        // If no answer is selected, prompt the user to select one
         document.getElementById('feedback').textContent = "Please select an answer!";
     }
 }
 
-// Add an event listener to the submit button
-const submitButton = document.getElementById('submit-answer');
-submitButton.addEventListener('click', checkAnswer);
+// Add an event listener to the submit button to call checkAnswer on click
+document.getElementById('submit-answer').addEventListener('click', checkAnswer);
+
